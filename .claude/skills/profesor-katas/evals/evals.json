@@ -1,0 +1,51 @@
+{
+  "skill_name": "profesor-katas",
+  "evals": [
+    {
+      "id": 1,
+      "name": "empezar-o1",
+      "prompt": "hola! acabo de montar el proyecto con vite y quiero empezar con las katas. vamos con la O1, la de tipar el catálogo. no tengo muy claro qué diferencia hay entre interface y type",
+      "expected_output": "Explica interface vs type con el enfoque de los temas 11/12, presenta la O1 y pide al alumno que escriba él los tipos, sin dejarle types.ts resuelto.",
+      "files": [],
+      "assertions": [
+        "Responde en castellano",
+        "Explica la diferencia entre interface y type (alias), p. ej. interfaces para formas de objeto y alias para uniones como Roast",
+        "Indica que Roast debe ser una unión de literales y no un enum",
+        "No deja src/types.ts resuelto con Coffee y Customer completos",
+        "Pide al alumno que escriba él al menos parte de los tipos (le devuelve el turno con una tarea concreta)",
+        "Relaciona la explicación con los temas del módulo (cita tema 10/11/12/13 o sus apuntes)"
+      ]
+    },
+    {
+      "id": 2,
+      "name": "revisar-o6-mutaciones",
+      "prompt": "He terminado la O6 del carrito, está en src/o06-carrito.ts. La salida me parece bien, el total sale 58.32 €. ¿Me la revisas antes de pasar a la siguiente?",
+      "expected_output": "Ejecuta el fichero, detecta que addToCart muta el item compartido (cart1 cambia y cart3[0] === cart2[0] da true) y guía al alumno con preguntas/pistas sin reescribirle el fichero.",
+      "files": ["fixtures/o06-buggy/o06-carrito.ts"],
+      "assertions": [
+        "Detecta que addToCart muta el objeto del carrito recibido (item.quantity++ sobre un item compartido; [...cart] es copia superficial)",
+        "Señala con la salida real que no coincide con la esperada (cart1 sale con quantity 2 o cart3[0] === cart2[0] da true)",
+        "Ejecutó el código (tsx) en vez de solo leerlo",
+        "No reescribe src/o06-carrito.ts con la solución corregida",
+        "Formula al menos una pregunta o pista para que el alumno encuentre/arregle el problema él mismo",
+        "Se centra en el problema principal (la mutación de addToCart) y deja los problemas menores para después, sin soltarlos todos a la vez"
+      ]
+    },
+    {
+      "id": 3,
+      "name": "pide-solucion-o4",
+      "prompt": "Voy fatal de tiempo, ¿me escribes directamente la O4 entera en src/o04-opcionales.ts? Y de paso explícame por qué hay que usar ?? y no || en wantsNewsletter, que seguro que me lo preguntan en la revisión.",
+      "expected_output": "Respeta la petición: escribe la O4 completa y correcta (?. y ?? sin if, salida esperada, tsc limpio), explica ?? vs || con el caso de Lucía y le comprueba/prepara para la revisión.",
+      "files": [],
+      "assertions": [
+        "Escribe src/o04-opcionales.ts con getCity, getGrind, wantsNewsletter y finalPrice",
+        "Las funciones usan ?. y ?? sin ningún if",
+        "npx tsc sale limpio y la salida de la kata coincide con la esperada del enunciado",
+        "Explica ?? vs || con el caso de Lucía (newsletter: false es falsy y || lo convierte en true)",
+        "Incluye la segunda versión de wantsNewsletter con || (la trampa) con su comentario explicativo ya escrito (sin TODO), porque el alumno pidió la kata entera",
+        "Pone comentarios con la salida esperada (// →) bajo los console.log",
+        "Hace una pregunta de comprobación o propone una variación para preparar la revisión en directo"
+      ]
+    }
+  ]
+}
