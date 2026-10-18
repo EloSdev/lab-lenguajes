@@ -25,6 +25,7 @@ dist-ssr
 
 
 # Custom docs
+docs/
 
 # Registros internos de Playwright MCP
-docs/
+.playwright-mcp/
